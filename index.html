@@ -27,6 +27,12 @@
             color: #4a4a4a;
             margin: 0;
             width: 100vw;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #gallery {
+            overflow-y: auto;
         }
 
         /* --- UTILITIES --- */
@@ -176,9 +182,49 @@
         /* --- PAGE 4: GALLERY --- */
         #gallery {
             background: white;
-            position: relative; overflow: hidden;
+            position: relative;
             animation: fadeIn 2s ease-in-out;
-            overflow-y: auto;
+        }
+        .page4 {
+          height: 100vh;
+          overflow-y: auto;   /* page scroll */
+          overflow-x: hidden;
+          scroll-behavior: smooth;
+        }
+        .page4::-webkit-scrollbar {
+          width: 8px;
+        }
+        .page4::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .page4::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, #c27d7d, #a33f5b);
+          border-radius: 10px;
+        }
+        .page4 {
+          scrollbar-width: thin;
+          scrollbar-color: #a33f5b transparent;
+        }
+        .next-wrapper {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin: 30px 0 40px 0;
+        }
+        .next-btn {
+          padding: 12px 30px;
+          border-radius: 30px;
+          border: none;
+          cursor: pointer;
+          font-size: 16px;
+          background: linear-gradient(135deg, #c27d7d, #a33f5b);
+          color: white;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+          transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .next-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 24px rgba(0,0,0,0.2);
         }
         #gallery .floating-hearts-intro {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -209,6 +255,25 @@
         .sparkle:nth-child(10) { left: 95%; animation-delay: 9s; }
         @keyframes floatSparkles { 0% { transform: translateY(100vh) rotate(0deg) scale(0.5); } 100% { transform: translateY(-10vh) rotate(360deg) scale(1); } }
         .gallery-photos { display: flex; flex-direction: column; gap: 40px; align-items: center; position: relative; z-index: 1; margin-top: 20px; }
+        .gallery-grid {
+          width: 100%;
+          height: auto;
+        }
+        .final-btn-wrapper {
+          display: flex;
+          justify-content: center;
+          margin: 30px 0 60px 0;
+        }
+        .final-btn {
+          padding: 12px 28px;
+          border-radius: 30px;
+          border: none;
+          background: linear-gradient(135deg,#c27d7d,#a33f5b);
+          color: white;
+          font-size: 16px;
+          cursor: pointer;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
         .photo-row { display: flex; gap: 30px; justify-content: center; }
         .photo-card {
             background: rgba(255,255,255,0.8); padding: 25px; border-radius: 30px;
@@ -302,8 +367,8 @@
             <div class="balloon-intro">🎈</div>
         </div>
         <div class="intro-container">
-            <div class="photo-card soni-card" style="animation-delay: 0.2s;"><img src="SDI.jpeg" alt="Soni Didi" style="transform: rotate(-7deg);"></div>
-            <div class="photo-card titu-card" style="animation-delay: 0.4s;"><img src="TBI.jpeg" alt="Titu Bhaiya" style="transform: rotate(7deg);"></div>
+            <div class="photo-card soni-card" style="animation-delay: 0.2s;"><img src="https://raw.githubusercontent.com/prashantmishra012/TBA10/main/static/SDI.jpeg" alt="Soni Didi" style="transform: rotate(-7deg);"></div>
+            <div class="photo-card titu-card" style="animation-delay: 0.4s;"><img src="https://raw.githubusercontent.com/prashantmishra012/TBA10/main/static/TBI.jpeg" alt="Titu Bhaiya" style="transform: rotate(7deg);"></div>
         </div>
         <div class="intro-text">
             <h1>Hello cuties…</h1>
@@ -313,7 +378,7 @@
     </section>
 
     <!-- PAGE 2 -->
-    <section id="rose-scene">
+    <section id="rose-scene" class="hidden">
         <div class="floating-hearts-intro">
             <div class="heart-intro">💗</div>
             <div class="heart-intro">💗</div>
@@ -337,8 +402,8 @@
             <div class="balloon-intro">🎈</div>
         </div>
         <div class="scene-stage" id="stage">
-            <div class="character" id="boy"><img class="char-head" src="TBI.jpeg" alt="Titu Bhaiya"><div class="char-body"></div></div>
-            <div class="character" id="girl"><img class="char-head" src="SDI.jpeg" alt="Soni Didi"><div class="char-body"></div></div>
+            <div class="character" id="boy"><img class="char-head" src="https://raw.githubusercontent.com/prashantmishra012/TBA10/main/static/TBI.jpeg" alt="Titu Bhaiya"><div class="char-body"></div></div>
+            <div class="character" id="girl"><img class="char-head" src="https://raw.githubusercontent.com/prashantmishra012/TBA10/main/static/SDI.jpeg" alt="Soni Didi"><div class="char-body"></div></div>
             <div class="rose">🌹</div>
             <div class="floating-hearts" id="hearts" style="display:none;">
                 <div class="heart">💖</div>
@@ -351,7 +416,7 @@
     </section>
 
     <!-- PAGE 3 -->
-    <section id="tasks">
+    <section id="tasks" class="hidden">
         <div class="floating-hearts-intro">
             <div class="heart-intro">💗</div>
             <div class="heart-intro">💗</div>
@@ -389,61 +454,66 @@
     </section>
 
     <!-- PAGE 4 -->
-    <section id="gallery">
-        <div class="floating-hearts-intro">
-            <div class="heart-intro">💗</div>
-            <div class="heart-intro">💗</div>
-            <div class="heart-intro">💗</div>
-            <div class="heart-intro">💗</div>
-            <div class="heart-intro">💗</div>
-            <div class="heart-intro">💗</div>
-            <div class="heart-intro">💗</div>
-            <div class="heart-intro">💗</div>
-            <div class="heart-intro">💗</div>
-            <div class="heart-intro">💗</div>
-            <div class="balloon-intro">🎈</div>
-            <div class="balloon-intro">🎈</div>
-            <div class="balloon-intro">🎈</div>
-            <div class="balloon-intro">🎈</div>
-            <div class="balloon-intro">🎈</div>
-            <div class="balloon-intro">🎈</div>
-            <div class="balloon-intro">🎈</div>
-            <div class="balloon-intro">🎈</div>
-            <div class="balloon-intro">🎈</div>
-            <div class="balloon-intro">🎈</div>
-        </div>
-        <div class="floating-sparkles">
-            <div class="sparkle">✨</div>
-            <div class="sparkle">✨</div>
-            <div class="sparkle">✨</div>
-            <div class="sparkle">✨</div>
-            <div class="sparkle">✨</div>
-            <div class="sparkle">✨</div>
-            <div class="sparkle">✨</div>
-            <div class="sparkle">✨</div>
-            <div class="sparkle">✨</div>
-            <div class="sparkle">✨</div>
-        </div>
-        <h1 class="gallery-title">Our Beautiful Memories</h1>
-        <div class="gallery-photos">
-            <div class="photo-row">
-                <div class="photo-card"><img src="WhatsApp Image 202025-12-31 at 1.36.12 AM.jpeg" alt="Memory 1"></div>
-                <div class="photo-card"><img src="WhatsApp Image 202025-12-31 at 1.38.44 AM.jpeg" alt="Memory 2"></div>
-                <div class="photo-card"><img src="WhatsApp Image 202025-12-31 at 1.39.06 AM.jpeg" alt="Memory 3"></div>
-                <div class="photo-card"><img src="WhatsApp Image 202025-12-31 at 1.39.40 AM.jpeg" alt="Memory 4"></div>
+    <section id="gallery" class="hidden">
+        <div class="page4">
+            <div class="floating-hearts-intro">
+                <div class="heart-intro">💗</div>
+                <div class="heart-intro">💗</div>
+                <div class="heart-intro">💗</div>
+                <div class="heart-intro">💗</div>
+                <div class="heart-intro">💗</div>
+                <div class="heart-intro">💗</div>
+                <div class="heart-intro">💗</div>
+                <div class="heart-intro">💗</div>
+                <div class="heart-intro">💗</div>
+                <div class="heart-intro">💗</div>
+                <div class="balloon-intro">🎈</div>
+                <div class="balloon-intro">🎈</div>
+                <div class="balloon-intro">🎈</div>
+                <div class="balloon-intro">🎈</div>
+                <div class="balloon-intro">🎈</div>
+                <div class="balloon-intro">🎈</div>
+                <div class="balloon-intro">🎈</div>
+                <div class="balloon-intro">🎈</div>
+                <div class="balloon-intro">🎈</div>
+                <div class="balloon-intro">🎈</div>
             </div>
-            <div class="photo-row">
-                <div class="photo-card"><img src="WhatsApp Image 202025-12-31 at 1.39.58 AM.jpeg" alt="Memory 5"></div>
-                <div class="photo-card"><img src="WhatsApp Image 202025-12-31 at 1.40.04 AM.jpeg" alt="Memory 6"></div>
-                <div class="photo-card"><img src="WhatsApp Image 202025-12-31 at 1.43.21 AM.jpeg" alt="Memory 7"></div>
-                <div class="photo-card"><img src="WhatsApp Image 202025-12-31 at 1.43.36 AM.jpeg" alt="Memory 8"></div>
+            <div class="floating-sparkles">
+                <div class="sparkle">✨</div>
+                <div class="sparkle">✨</div>
+                <div class="sparkle">✨</div>
+                <div class="sparkle">✨</div>
+                <div class="sparkle">✨</div>
+                <div class="sparkle">✨</div>
+                <div class="sparkle">✨</div>
+                <div class="sparkle">✨</div>
+                <div class="sparkle">✨</div>
+                <div class="sparkle">✨</div>
+            </div>
+            <h1 class="gallery-title">Our Beautiful Memories</h1>
+            <div class="gallery-photos">
+                <div class="photo-row">
+                <div class="photo-card"><img src="https://raw.githubusercontent.com/prashantmishra012/TBA10/main/static/WhatsApp Image 202025-12-31 at 1.36.12 AM.jpeg" alt="Memory 1"></div>
+                    <div class="photo-card"><img src="https://raw.githubusercontent.com/prashantmishra012/TBA10/main/static/WhatsApp Image 202025-12-31 at 1.38.44 AM.jpeg" alt="Memory 2"></div>
+                    <div class="photo-card"><img src="https://raw.githubusercontent.com/prashantmishra012/TBA10/main/static/WhatsApp Image 202025-12-31 at 1.39.06 AM.jpeg" alt="Memory 3"></div>
+                    <div class="photo-card"><img src="https://raw.githubusercontent.com/prashantmishra012/TBA10/main/static/WhatsApp Image 202025-12-31 at 1.39.40 AM.jpeg" alt="Memory 4"></div>
+                </div>
+                <div class="photo-row">
+                    <div class="photo-card"><img src="https://raw.githubusercontent.com/prashantmishra012/TBA10/main/static/WhatsApp Image 202025-12-31 at 1.39.58 AM.jpeg" alt="Memory 5"></div>
+                    <div class="photo-card"><img src="https://raw.githubusercontent.com/prashantmishra012/TBA10/main/static/WhatsApp Image 202025-12-31 at 1.40.04 AM.jpeg" alt="Memory 6"></div>
+                    <div class="photo-card"><img src="https://raw.githubusercontent.com/prashantmishra012/TBA10/main/static/WhatsApp Image 202025-12-31 at 1.43.21 AM.jpeg" alt="Memory 7"></div>
+                    <div class="photo-card"><img src="https://raw.githubusercontent.com/prashantmishra012/TBA10/main/static/WhatsApp Image 202025-12-31 at 1.43.36 AM.jpeg" alt="Memory 8"></div>
+                </div>
+
+            </div>
+            <div class="final-btn-wrapper">
+              <button class="final-btn" onclick="nextSection('gallery', 'outro')">Final Message 💌</button>
             </div>
         </div>
-        <button class="btn" onclick="nextSection('gallery', 'outro')">Final Message 💌</button>
     </section>
 
     <!-- PAGE 5 -->
-    <section id="outro">
+    <section id="outro" class="hidden">
         <div class="floating-hearts-intro">
             <div class="heart-intro">💗</div>
             <div class="heart-intro">💗</div>
@@ -467,9 +537,9 @@
             <div class="balloon-intro">🎈</div>
         </div>
         <div class="outro-card">
-            <img src="outrow.jpeg" alt="Together" style="width:180px; height:180px; object-fit:contain; border-radius:50%; margin-bottom:20px;">
+            <img src="https://raw.githubusercontent.com/prashantmishra012/TBA10/main/static/outrow.jpeg" alt="Together" style="width:180px; height:180px; object-fit:contain; border-radius:50%; margin-bottom:20px;">
             <h1>Happy 10th Anniversary, you two!</h1>
-            <p style="margin:20px 0; line-height:1.6;">Your love is soft, silly, warm, and beautiful —<br>the kind that only grows sweeter with time.<br><br>Keep laughing together,<br>keep holding each other tight,<br>and keep choosing each other<br>every single day.<br><br>And of course…<br>may your arguments stay short,<br>your hugs stay long,<br>and your snacks always be shared. 😄💞<br><br>Here’s to many more years<br>of love, laughter, and endless sweet moments together. 💖</p>
+            <p style="margin:20px 0; line-height:1.6;">Your love is soft, silly, warm, and beautiful —<br>the kind that only grows sweeter with time.<br>Keep laughing together,<br>keep holding each other tight,<br>and keep choosing each other<br>every single day.<br>And of course…<br>may your arguments stay short,<br>your hugs stay long,<br>and your snacks always be shared. 😄💞<br>Here’s to many more years<br>of love, laughter, and endless sweet moments together. 💖</p>
         </div>
     </section>
 
