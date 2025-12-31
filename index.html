@@ -1,0 +1,582 @@
+💗<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titu Bhaiya & Soni Didi | 10th Anniversary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --primary-color: #d4a5a5; /* Dusty Rose */
+            --secondary-color: #9e5a63; /* Deep Rose */
+            --bg-warm: linear-gradient(to bottom, #ffe6e6 0%, #ffb3ba 100%);
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-warm);
+            color: #4a4a4a;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* --- UTILITIES --- */
+        .hidden { display: none !important; opacity: 0; pointer-events: none; }
+
+        .btn {
+            padding: 12px 30px;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(158, 90, 99, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(158, 90, 99, 0.6); }
+
+        /* Music Popup */
+        .music-popup {
+            position: absolute; top: 60px; left: 50%; transform: translateX(-50%);
+            background: rgba(255,255,255,0.9); color: var(--secondary-color);
+            padding: 8px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); white-space: nowrap; opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease; z-index: 1001;
+        }
+        .music-popup::after {
+            content: ""; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            border: 5px solid transparent; border-bottom-color: rgba(255,255,255,0.9);
+        }
+        .music-popup.show { opacity: 1; }
+
+        /* --- TRANSITION OVERLAY --- */
+        .transition-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .heart-shape {
+            width: 100px; height: 100px; background-color: #ff9a9e;
+            transform: scale(0); position: relative;
+            transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .heart-shape::before, .heart-shape::after {
+            content: ""; width: 100px; height: 100px; background-color: #ff9a9e;
+            border-radius: 50%; position: absolute;
+        }
+
+        .heart-shape::before { top: -50px; left: 0; }
+        .heart-shape::after { top: 0; left: -50px; }
+
+        .transition-overlay.active .heart-shape { transform: scale(50) rotate(0deg); }
+
+        /* --- SECTIONS --- */
+        section {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 1s ease-in-out; padding: 20px;
+        }
+
+        section.active { opacity: 1; z-index: 10; }
+
+        /* --- PAGE 1: INTRO --- */
+        #intro {
+            background: white;
+            position: relative; overflow: hidden;
+            animation: fadeIn 2s ease-in-out;
+        }
+        #intro .floating-hearts-intro {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+        }
+        .heart-intro {
+            position: absolute; font-size: 1.5rem; opacity: 0.3;
+            animation: floatHearts 10s linear infinite;
+        }
+        .heart-intro:nth-child(1) { left: 5%; animation-delay: 0s; }
+        .heart-intro:nth-child(2) { left: 15%; animation-delay: 1s; }
+        .heart-intro:nth-child(3) { left: 25%; animation-delay: 2s; }
+        .heart-intro:nth-child(4) { left: 35%; animation-delay: 3s; }
+        .heart-intro:nth-child(5) { left: 45%; animation-delay: 4s; }
+        .heart-intro:nth-child(6) { left: 55%; animation-delay: 5s; }
+        .heart-intro:nth-child(7) { left: 65%; animation-delay: 6s; }
+        .heart-intro:nth-child(8) { left: 75%; animation-delay: 7s; }
+        .heart-intro:nth-child(9) { left: 85%; animation-delay: 8s; }
+        .heart-intro:nth-child(10) { left: 95%; animation-delay: 9s; }
+        .balloon-intro {
+            position: absolute; font-size: 1.5rem; opacity: 0.4; color: #ff9a9e;
+            animation: floatBalloons 12s linear infinite;
+        }
+        .balloon-intro:nth-child(1) { left: 10%; animation-delay: 0.5s; }
+        .balloon-intro:nth-child(2) { left: 20%; animation-delay: 1.5s; }
+        .balloon-intro:nth-child(3) { left: 30%; animation-delay: 2.5s; }
+        .balloon-intro:nth-child(4) { left: 40%; animation-delay: 3.5s; }
+        .balloon-intro:nth-child(5) { left: 50%; animation-delay: 4.5s; }
+        .balloon-intro:nth-child(6) { left: 60%; animation-delay: 5.5s; }
+        .balloon-intro:nth-child(7) { left: 70%; animation-delay: 6.5s; }
+        .balloon-intro:nth-child(8) { left: 80%; animation-delay: 7.5s; }
+        .balloon-intro:nth-child(9) { left: 90%; animation-delay: 8.5s; }
+        .balloon-intro:nth-child(10) { left: 100%; animation-delay: 9.5s; }
+        @keyframes floatHearts { 0% { transform: translateY(100vh) rotate(0deg); } 100% { transform: translateY(-10vh) rotate(360deg); } }
+        @keyframes floatBalloons { 0% { transform: translateY(100vh) scale(0.5); } 100% { transform: translateY(-10vh) scale(1); } }
+        .intro-container { display: flex; flex-direction: row; gap: 20px; align-items: center; position: relative; z-index: 1; }
+        .photo-card {
+            background: rgba(255,255,255,0.8); padding: 20px; border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); backdrop-filter: blur(15px);
+            animation: fadeUp 1.5s forwards; opacity: 0; transition: transform 0.3s ease;
+        }
+        .photo-card:hover { transform: translateY(-5px); }
+        .photo-card img { width: 200px; height: 250px; object-fit: cover; border-radius: 0; }
+        .intro-text { text-align: center; margin-top: 40px; animation: fadeIn 2s forwards 1s; opacity: 0; position: relative; z-index: 1; }
+        .intro-text h1 { font-family: 'Dancing Script', cursive; color: var(--secondary-color); font-size: 3rem; font-weight: 600; }
+        .intro-text p { font-size: 1.3rem; margin-top: 15px; color: #555; font-family: 'Poppins', sans-serif; }
+
+        /* --- PAGE 2: ROSE SCENE --- */
+        #rose-scene {
+            background: white;
+            position: relative; overflow: hidden;
+            animation: fadeIn 2s ease-in-out;
+        }
+        #rose-scene h2 { color: var(--secondary-color); }
+        #rose-scene .floating-hearts-intro {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+        }
+        .scene-stage { position: relative; width: 100%; max-width: 800px; height: 400px; display: flex; align-items: flex-end; z-index: 1; }
+        .character { position: absolute; bottom: 50px; transition: all 2s ease-in-out; }
+        .char-body { width: 200px; height: 250px; position: relative; }
+        .char-head { width: 200px; height: 200px; object-fit: cover; border-radius: 50%; position: absolute; top: 0; left: 0; }
+
+        #boy { left: 10%; }
+        #girl { right: 10%; }
+
+        .rose { font-size: 2rem; position: absolute; top: 90px; left: 32.5%; transition: all 1s ease; }
+        .kissing #boy { left: 70%; transform: rotate(5deg); }
+        .kissing #girl { left: 30%; transform: rotate(-5deg); }
+        .walking #boy { left: 35%; }
+        .giving-rose .rose { top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg); }
+        .floating-hearts { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+        .heart { font-size: 2rem; animation: floatUp 3s ease-out forwards; opacity: 0; }
+        .heart:nth-child(1) { animation-delay: 0.5s; }
+        .heart:nth-child(2) { animation-delay: 1s; }
+        .heart:nth-child(3) { animation-delay: 1.5s; }
+        @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-200px) scale(1.5); } }
+
+        /* --- PAGE 3: TASKS --- */
+        #tasks {
+            background: white;
+            position: relative; overflow: hidden;
+            animation: fadeIn 2s ease-in-out;
+        }
+        #tasks .floating-hearts-intro {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+        }
+        .task-container { background: rgba(255,255,255,0.8); padding: 40px; border-radius: 30px; box-shadow: 0 20px 60px rgba(255,182,193,0.4); text-align: center; position: relative; z-index: 1; }
+        .task-item {
+            background: #fff; border: 1px solid #ffe4e1; margin-bottom: 15px; padding: 15px;
+            border-radius: 15px; display: flex; gap: 15px; opacity: 0; transform: translateX(-20px); transition: 0.5s;
+        }
+        .task-item.show { opacity: 1; transform: translateX(0); }
+        #tasks h2 { font-family: 'Dancing Script', cursive; color: var(--secondary-color); font-size: 3rem; font-weight: 600; margin-bottom: 20px; }
+        #tasks p { font-size: 1.3rem; margin-top: 15px; color: #555; font-family: 'Poppins', sans-serif; }
+        .message { display: none; font-size: 1.3rem; color: #555; font-family: 'Poppins', sans-serif; margin: 20px 0; }
+        #see-memories-btn { display: none; }
+
+        /* --- PAGE 4: GALLERY --- */
+        #gallery {
+            background: white;
+            position: relative; overflow: hidden;
+            animation: fadeIn 2s ease-in-out;
+            overflow-y: auto;
+        }
+        #gallery .floating-hearts-intro {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+        }
+        .gallery-title {
+            text-align: center; font-family: 'Dancing Script', cursive; color: var(--secondary-color);
+            font-size: 3rem; font-weight: 600; margin-bottom: 30px; position: relative; z-index: 1;
+            animation: fadeIn 2s forwards; opacity: 0;
+        }
+        .floating-sparkles {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+        }
+        .sparkle {
+            position: absolute; font-size: 1.5rem; opacity: 0.6; color: #ffd700;
+            animation: floatSparkles 8s linear infinite;
+        }
+        .sparkle:nth-child(1) { left: 5%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { left: 15%; animation-delay: 1s; }
+        .sparkle:nth-child(3) { left: 25%; animation-delay: 2s; }
+        .sparkle:nth-child(4) { left: 35%; animation-delay: 3s; }
+        .sparkle:nth-child(5) { left: 45%; animation-delay: 4s; }
+        .sparkle:nth-child(6) { left: 55%; animation-delay: 5s; }
+        .sparkle:nth-child(7) { left: 65%; animation-delay: 6s; }
+        .sparkle:nth-child(8) { left: 75%; animation-delay: 7s; }
+        .sparkle:nth-child(9) { left: 85%; animation-delay: 8s; }
+        .sparkle:nth-child(10) { left: 95%; animation-delay: 9s; }
+        @keyframes floatSparkles { 0% { transform: translateY(100vh) rotate(0deg) scale(0.5); } 100% { transform: translateY(-10vh) rotate(360deg) scale(1); } }
+        .gallery-photos { display: flex; flex-direction: column; gap: 40px; align-items: center; position: relative; z-index: 1; margin-top: 20px; }
+        .photo-row { display: flex; gap: 30px; justify-content: center; }
+        .photo-card {
+            background: rgba(255,255,255,0.8); padding: 25px; border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); backdrop-filter: blur(15px);
+            animation: fadeUp 1.5s forwards; opacity: 0; transition: transform 0.3s ease;
+        }
+        .photo-card:hover { transform: translateY(-5px); }
+        #gallery .photo-card img { width: 250px; height: 300px; object-fit: contain; border-radius: 0; }
+
+        /* --- PAGE 5: OUTRO --- */
+        #outro { background: white; text-align: center; position: relative; overflow: hidden; }
+        .outro-card { background: rgba(255,255,255,0.8); padding: 40px; border-radius: 30px; max-width: 600px; position: relative; z-index: 1; }
+        #outro .floating-hearts-intro { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+        .heart-intro { position: absolute; font-size: 1.5rem; opacity: 0.3; animation: floatHearts 10s linear infinite; }
+        .heart-intro:nth-child(1) { left: 5%; animation-delay: 0s; }
+        .heart-intro:nth-child(2) { left: 15%; animation-delay: 1s; }
+        .heart-intro:nth-child(3) { left: 25%; animation-delay: 2s; }
+        .heart-intro:nth-child(4) { left: 35%; animation-delay: 3s; }
+        .heart-intro:nth-child(5) { left: 45%; animation-delay: 4s; }
+        .heart-intro:nth-child(6) { left: 55%; animation-delay: 5s; }
+        .heart-intro:nth-child(7) { left: 65%; animation-delay: 6s; }
+        .heart-intro:nth-child(8) { left: 75%; animation-delay: 7s; }
+        .heart-intro:nth-child(9) { left: 85%; animation-delay: 8s; }
+        .heart-intro:nth-child(10) { left: 95%; animation-delay: 9s; }
+        .balloon-intro { position: absolute; font-size: 1.5rem; opacity: 0.4; color: #ff9a9e; animation: floatBalloons 12s linear infinite; }
+        .balloon-intro:nth-child(1) { left: 10%; animation-delay: 0.5s; }
+        .balloon-intro:nth-child(2) { left: 20%; animation-delay: 1.5s; }
+        .balloon-intro:nth-child(3) { left: 30%; animation-delay: 2.5s; }
+        .balloon-intro:nth-child(4) { left: 40%; animation-delay: 3.5s; }
+        .balloon-intro:nth-child(5) { left: 50%; animation-delay: 4.5s; }
+        .balloon-intro:nth-child(6) { left: 60%; animation-delay: 5.5s; }
+        .balloon-intro:nth-child(7) { left: 70%; animation-delay: 6.5s; }
+        .balloon-intro:nth-child(8) { left: 80%; animation-delay: 7.5s; }
+        .balloon-intro:nth-child(9) { left: 90%; animation-delay: 8.5s; }
+        .balloon-intro:nth-child(10) { left: 100%; animation-delay: 9.5s; }
+
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .intro-container { flex-direction: column; gap: 20px; }
+            .photo-card img { width: 150px; height: 200px; }
+            .intro-text h1 { font-size: 2rem; }
+            .scene-stage { height: 300px; }
+            .character { bottom: 30px; }
+            .task-container { padding: 20px; }
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+            .gallery-item img { height: 150px; }
+            .outro-card { padding: 20px; max-width: 90%; }
+            .outro-card img { width: 150px; height: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Audio -->
+    <audio id="bg-music" loop>
+        <source src="Remo Love Bgm Ringtone Download - MobCup.Com.Co.mp3" type="audio/mpeg">
+    </audio>
+    <div style="position:fixed; top:20px; right:20px; z-index:1000; font-size:2rem; cursor:pointer; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 50%; padding: 10px; border: 1px solid rgba(255,255,255,0.2);" onclick="toggleMusic()">
+        🎵
+        <div class="music-popup">Tap to play music! 🎶</div>
+    </div>
+
+    <!-- Transition -->
+    <div class="transition-overlay" id="transition-overlay"><div class="heart-shape"></div></div>
+
+    <!-- PAGE 1 -->
+    <section id="intro" class="active">
+        <div class="floating-hearts-intro">
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+        </div>
+        <div class="intro-container">
+            <div class="photo-card soni-card" style="animation-delay: 0.2s;"><img src="SDI.jpeg" alt="Soni Didi" style="transform: rotate(-7deg);"></div>
+            <div class="photo-card titu-card" style="animation-delay: 0.4s;"><img src="TBI.jpeg" alt="Titu Bhaiya" style="transform: rotate(7deg);"></div>
+        </div>
+        <div class="intro-text">
+            <h1>Hello cuties…</h1>
+
+            <button class="btn" onclick="nextSection('intro', 'rose-scene')">Start Journey ✨</button>
+        </div>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section id="rose-scene">
+        <div class="floating-hearts-intro">
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+        </div>
+        <div class="scene-stage" id="stage">
+            <div class="character" id="boy"><img class="char-head" src="TBI.jpeg" alt="Titu Bhaiya"><div class="char-body"></div></div>
+            <div class="character" id="girl"><img class="char-head" src="SDI.jpeg" alt="Soni Didi"><div class="char-body"></div></div>
+            <div class="rose">🌹</div>
+            <div class="floating-hearts" id="hearts" style="display:none;">
+                <div class="heart">💖</div>
+                <div class="heart">💕</div>
+                <div class="heart">💗</div>
+            </div>
+        </div>
+        <h2>Titu Bhaiya, please give this beautiful rose to the prettiest lady — our lovely Soni Didi…</h2>
+        <button class="btn" id="rose-btn" onclick="playRoseAnimation()">Give Rose 🌹</button>
+    </section>
+
+    <!-- PAGE 3 -->
+    <section id="tasks">
+        <div class="floating-hearts-intro">
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+        </div>
+        <div class="task-container">
+            <h2>Because Titu Bhaiya gave you a rose… here are some little love-tasks for you, Soni Didi 💐💌</h2>
+            <div id="task-list" style="margin-top:20px; text-align:left;">
+                <div class="task-item">🤍 Give your pookie the warmest hug today</div>
+                <div class="task-item">🥰 Tell him one thing you love the most about him</div>
+                <div class="task-item">✨ Hold his hand for a little longer today</div>
+                <div class="task-item">😘 Give him a kiss — he deserves it</div>
+            </div>
+            <div class="message" id="task-message">have u done the tasks ? do not cheat.....</div>
+            <button class="btn" id="done-btn" onclick="showMessage()">Done</button>
+            <button class="btn" id="see-memories-btn" onclick="nextSection('tasks', 'gallery')">See Memories 📸</button>
+        </div>
+    </section>
+
+    <!-- PAGE 4 -->
+    <section id="gallery">
+        <div class="floating-hearts-intro">
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+        </div>
+        <div class="floating-sparkles">
+            <div class="sparkle">✨</div>
+            <div class="sparkle">✨</div>
+            <div class="sparkle">✨</div>
+            <div class="sparkle">✨</div>
+            <div class="sparkle">✨</div>
+            <div class="sparkle">✨</div>
+            <div class="sparkle">✨</div>
+            <div class="sparkle">✨</div>
+            <div class="sparkle">✨</div>
+            <div class="sparkle">✨</div>
+        </div>
+        <h1 class="gallery-title">Our Beautiful Memories</h1>
+        <div class="gallery-photos">
+            <div class="photo-row">
+                <div class="photo-card"><img src="WhatsApp Image 2025-12-31 at 1.36.12 AM.jpeg" alt="Memory 1"></div>
+                <div class="photo-card"><img src="WhatsApp Image 2025-12-31 at 1.38.44 AM.jpeg" alt="Memory 2"></div>
+                <div class="photo-card"><img src="WhatsApp Image 2025-12-31 at 1.39.06 AM.jpeg" alt="Memory 3"></div>
+                <div class="photo-card"><img src="WhatsApp Image 2025-12-31 at 1.39.40 AM.jpeg" alt="Memory 4"></div>
+            </div>
+            <div class="photo-row">
+                <div class="photo-card"><img src="WhatsApp Image 2025-12-31 at 1.39.58 AM.jpeg" alt="Memory 5"></div>
+                <div class="photo-card"><img src="WhatsApp Image 2025-12-31 at 1.40.04 AM.jpeg" alt="Memory 6"></div>
+                <div class="photo-card"><img src="WhatsApp Image 2025-12-31 at 1.43.21 AM.jpeg" alt="Memory 7"></div>
+                <div class="photo-card"><img src="WhatsApp Image 2025-12-31 at 1.43.36 AM.jpeg" alt="Memory 8"></div>
+            </div>
+        </div>
+        <button class="btn" onclick="nextSection('gallery', 'outro')">Final Message 💌</button>
+    </section>
+
+    <!-- PAGE 5 -->
+    <section id="outro">
+        <div class="floating-hearts-intro">
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="heart-intro">💗</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+            <div class="balloon-intro">🎈</div>
+        </div>
+        <div class="outro-card">
+            <img src="outrow.jpeg" alt="Together" style="width:180px; height:180px; object-fit:contain; border-radius:50%; margin-bottom:20px;">
+            <h1>Happy 10th Anniversary, you two!</h1>
+            <p style="margin:20px 0; line-height:1.6;">Your love is soft, silly, warm, and beautiful —<br>the kind that only grows sweeter with time.<br><br>Keep laughing together,<br>keep holding each other tight,<br>and keep choosing each other<br>every single day.<br><br>And of course…<br>may your arguments stay short,<br>your hugs stay long,<br>and your snacks always be shared. 😄💞<br><br>Here’s to many more years<br>of love, laughter, and endless sweet moments together. 💖</p>
+        </div>
+    </section>
+
+    <script>
+        function toggleMusic() {
+            const m = document.getElementById('bg-music');
+            const popup = document.querySelector('.music-popup');
+            m.paused ? m.play() : m.pause();
+            popup.classList.add('show');
+            setTimeout(() => popup.classList.remove('show'), 2000);
+        }
+
+        function nextSection(curr, next) {
+            const overlay = document.getElementById('transition-overlay');
+            overlay.classList.add('active');
+            setTimeout(() => {
+                document.getElementById(curr).classList.remove('active');
+                document.getElementById(curr).classList.add('hidden');
+                document.getElementById(next).classList.remove('hidden');
+                document.getElementById(next).classList.add('active');
+                if(next === 'tasks') animateTasks();
+                if(next === 'rose-scene') {
+                    const music = document.getElementById('bg-music');
+                    music.play().catch(err => console.log('Autoplay blocked:', err));
+                }
+                setTimeout(() => overlay.classList.remove('active'), 500);
+            }, 1000);
+        }
+
+        function playRoseAnimation() {
+            const stage = document.getElementById('stage');
+            const hearts = document.getElementById('hearts');
+            document.getElementById('rose-btn').style.display = 'none';
+            // Step 1: Walk
+            stage.classList.add('walking');
+            setTimeout(() => {
+                // Step 2: Give rose
+                stage.classList.add('giving-rose');
+                setTimeout(() => {
+                    // Step 3: Kiss
+                    stage.classList.add('kissing');
+                    // Show hearts
+                    hearts.style.display = 'block';
+                    setTimeout(() => {
+                        // Transition
+                        nextSection('rose-scene', 'tasks');
+                    }, 3000);
+                }, 1000);
+            }, 2000);
+        }
+
+        function animateTasks() {
+            document.querySelectorAll('.task-item').forEach((el, i) => {
+                setTimeout(() => el.classList.add('show'), i * 500 + 500);
+            });
+        }
+
+        function showMessage() {
+            document.getElementById('task-message').style.display = 'block';
+            document.getElementById('see-memories-btn').style.display = 'block';
+            document.getElementById('done-btn').style.display = 'none';
+        }
+
+        // Randomize heart and balloon positions and animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const hearts = document.querySelectorAll('.heart-intro');
+            hearts.forEach(heart => {
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 10 + 's';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's'; // 5-10s
+            });
+            const balloons = document.querySelectorAll('.balloon-intro');
+            balloons.forEach(balloon => {
+                balloon.style.left = Math.random() * 100 + '%';
+                balloon.style.animationDelay = Math.random() * 12 + 's';
+                balloon.style.animationDuration = (Math.random() * 5 + 7) + 's'; // 7-12s
+            });
+            // Autoplay music on page load
+            const music = document.getElementById('bg-music');
+            music.play().catch(err => console.log('Autoplay blocked:', err));
+        });
+    </script>
+</body>
+</html>
